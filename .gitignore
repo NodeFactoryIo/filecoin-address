@@ -1,5 +1,7 @@
 *.js
+*.js.map
+*.log
 
-./dist
-
-./node_modules
+dist
+build
+node_modules
