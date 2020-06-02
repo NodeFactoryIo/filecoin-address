@@ -7,12 +7,12 @@
   "scripts": {
     "init": "mkdir dist",
     "clean": "rm -rf dist",
+    "prebuild": "yarn run clean && yarn run init",
     "build": "tsc --incremental --sourceMap --outDir dist",
-    "compile": "tsc",
     "lint::fix": "eslint --fix  --ext .ts src/",
     "lint": "eslint --ext .ts src/",
-    "pretest": "yarn run compile && yarn run lint",
-    "test": "ts-mocha \"test/**/*.test.ts\""
+    "pretest": "yarn run lint",
+    "test": "mocha -r ts-node/register \"test/**/*.test.ts\""
   },
   "author": "Mak Muftic <mak@nodefactory.io>",
   "contributors": [
@@ -25,19 +25,22 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.4",
-    "@types/mocha": "^5.2.7",
+    "@types/elliptic": "^6.4.12",
     "@types/expect": "^24.3.0",
+    "@types/mocha": "^5.2.7",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
-    "@types/elliptic": "^6.4.12",
-    "typescript": "^3.9.3",
+    "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "mocha": "^6.2.3",
-    "ts-mocha": "^7.0.0",
-    "sinon": "^8.1.0"
+    "sinon": "^8.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
   },
   "dependencies": {
-    "elliptic": "^6.5.2",
-    "blakejs": "^1.1.0"
+    "@openworklabs/filecoin-address": "^0.0.4",
+    "blakejs": "^1.1.0",
+    "crypto-js": "^4.0.0",
+    "elliptic": "^6.5.2"
   }
 }

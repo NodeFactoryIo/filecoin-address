@@ -5,11 +5,29 @@
     "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types"
-    ]
+      "./src/@types",
+      "types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "../node_modules"
+      ],
+      "blakejs": [
+        "./@types/blakejs"
+      ],
+      "@openworklabs/filecoin-address": [
+        "./@types/filecoin-address"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
