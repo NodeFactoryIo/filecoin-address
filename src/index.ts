@@ -1,4 +1,4 @@
-export * from "./keyPair";
+export {KeyPair} from "./keyPair"
 export {keyPairFromSeed} from "./operations";
 export {keyPairFromPrivateKey} from "./operations";
 
