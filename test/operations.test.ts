@@ -1,6 +1,5 @@
 import {keyPairFromPrivateKey, keyPairFromSeed, publicKeyToAddress} from "../src";
 import { expect } from "chai";
-import {hexToU8a} from "../src/util";
 
 describe('Test API functions', function () {
 
@@ -44,8 +43,26 @@ describe('Test API functions', function () {
     });
 
     describe('keyPairFromPrivateKey', function () {
-        it('should generate valid keypair from private key', function () {
-            const generatedKeypair = keyPairFromPrivateKey(hexToU8a(testPrivateKey), "f");
+        it('should generate valid keypair from private key provided as Uint8Array', function () {
+            const uintArray = [102, 59, 19, 116, 180, 174, 82, 66, 174, 81, 152, 74, 44, 53, 142, 87, 227, 85, 194, 169, 107, 156, 217, 160, 205, 233, 2, 203, 196, 50, 250, 121];
+            const generatedKeypair = keyPairFromPrivateKey(new Uint8Array(uintArray), "f");
+            // check if network prefix valid
+            expect(generatedKeypair.address.startsWith("f")).to.be.true;
+            // check if protocol identificator valid
+            expect(generatedKeypair.address.slice(1, 2)).to.be.eq('1');
+            // check if address valid
+            expect(generatedKeypair.address.length).to.be.eq(ADDRESS_LENGTH);
+            expect(generatedKeypair.address).to.be.eq(testAddress);
+            // 04 prefix + 64 bytes
+            expect(generatedKeypair.publicKey.length).to.be.eq(PUB_KEY_LENGTH);
+            expect(generatedKeypair.publicKey).to.be.eq(testPublicKey);
+            // 32 bytes
+            expect(generatedKeypair.privateKey.length).to.be.eq(PR_KEY_LENGTH);
+            expect(generatedKeypair.privateKey).to.be.eq(testPrivateKey);
+        });
+
+        it('should generate valid keypair from private key provided as hex string', function () {
+            const generatedKeypair = keyPairFromPrivateKey(testPrivateKey, "f");
             // check if network prefix valid
             expect(generatedKeypair.address.startsWith("f")).to.be.true;
             // check if protocol identificator valid

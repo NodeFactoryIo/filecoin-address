@@ -10,12 +10,13 @@ import {hexToU8a} from "./util";
  *
  * If network is not provided, returned address is not encoded.
  *
- * @param privateKey
- * @param network -
+ * @param privateKey - as Uint8Array or hex string
+ * @param network - "f" or "t"
  */
-export function keyPairFromPrivateKey(privateKey: Uint8Array, network?: FilecoinNetwork): KeyPair {
+export function keyPairFromPrivateKey(privateKey: Uint8Array | string, network?: FilecoinNetwork): KeyPair {
+  const pk: Uint8Array = typeof privateKey === "string" ? hexToU8a(privateKey) : privateKey;
   const e = new ec("secp256k1");
-  return createKeyPair(e.keyFromPrivate(privateKey), network)
+  return createKeyPair(e.keyFromPrivate(pk), network)
 }
 
 /**
@@ -24,7 +25,7 @@ export function keyPairFromPrivateKey(privateKey: Uint8Array, network?: Filecoin
  * If network is not provided, returned address is not encoded.
  *
  * @param seed
- * @param network
+ * @param network - "f" or "t"
  */
 export function keyPairFromSeed(seed: string, network?: FilecoinNetwork): KeyPair {
   const seedHash = blakejs.blake2bHex(seed, null, 32);
@@ -37,8 +38,8 @@ export function keyPairFromSeed(seed: string, network?: FilecoinNetwork): KeyPai
  *
  * If network is not provided, returned address is not encoded.
  *
- * @param publicKey
- * @param network
+ * @param publicKey - as Uint8Array or hex string
+ * @param network - "f" or "t"
  */
 export function publicKeyToAddress(publicKey: Uint8Array | string, network?: FilecoinNetwork): string {
   const pk: Uint8Array = typeof publicKey === "string" ? hexToU8a(publicKey) : publicKey;
