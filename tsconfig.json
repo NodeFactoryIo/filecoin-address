@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types",
+      "types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "../node_modules"
+      ],
+      "blakejs": [
+        "./@types/blakejs"
+      ],
+      "@openworklabs/filecoin-address": [
+        "./@types/filecoin-address"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/@types"
+  ]
+}
