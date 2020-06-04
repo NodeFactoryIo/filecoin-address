@@ -1,18 +1,20 @@
 {
   "name": "@nodefactory/filecoin-address",
   "version": "1.0.0",
-  "description": "filecoin address lib",
+  "private": false,
+  "description": "Typescript library for generating filecoin address from keys",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "init": "mkdir dist",
     "clean": "rm -rf dist",
     "prebuild": "yarn run clean && yarn run init",
-    "build": "tsc --incremental --sourceMap --outDir dist",
-    "lint::fix": "eslint --fix  --ext .ts src/",
+    "build": "tsc --project tsconfig.build.json --sourceMap --outDir dist --declaration",
+    "lint:fix": "eslint --fix  --ext .ts src/",
     "lint": "eslint --ext .ts src/",
     "pretest": "yarn run lint",
-    "test": "mocha -r ts-node/register \"test/**/*.test.ts\""
+    "test": "mocha -r ts-node/register \"test/**/*.test.ts\"",
+    "prepare": "yarn run build"
   },
   "author": "Mak Muftic <mak@nodefactory.io>",
   "contributors": [
