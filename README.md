@@ -1,5 +1,3 @@
-![NodeFactory](banner.png)
-
 # filecoin-address
 
 Provides functions for generation of keypairs and [protocol-1](https://filecoin-project.github.io/specs/#protocol-1-libsecpk1-elliptic-curve-public-keys) addresses for filecoin network.
@@ -100,3 +98,6 @@ const address = publicKeyToAddress(publicKeyAsUint8ArrayOrString, "f");
 console.log(address);
 // f1j5klxt6zktifpibt7jlafmdxkfe4fwjhm6yqjhq
 ```
+
+## Developed by
+![NodeFactory](banner.png)
