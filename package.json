@@ -1,9 +1,13 @@
 {
   "name": "@nodefactory/filecoin-address",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "description": "Typescript library for generating filecoin address from keys",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
